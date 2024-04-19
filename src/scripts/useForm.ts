@@ -24,7 +24,7 @@ interface FormProps<T> {
     wasSuccessful: boolean;
     reset(...fields: (keyof T)[]): void;
     setError(field: keyof T, value: string): void;
-    setError(errors: Record<keyof T, string>): void;
+    setError(errors: Partial<Record<keyof T, string>>): void;
     clearErrors(...fields: (keyof T)[]): void;
     submit(method: Method, url: string, options?: Partial<VisitOptions>): void;
     get(url: string, options?: Partial<VisitOptions>): void;
@@ -60,7 +60,7 @@ export default function useForm<T extends FormFields>(data: T) {
                     });
             }
         },
-        setError(fieldOrFields: keyof T | Record<keyof T, string>, maybeValue?: string) {
+        setError(fieldOrFields: keyof T | Partial<Record<keyof T, string>>, maybeValue?: string) {
             Object.assign(this.errors, typeof fieldOrFields === 'string' ? { [fieldOrFields]: maybeValue } : fieldOrFields);
         },
         clearErrors(...fields) {
