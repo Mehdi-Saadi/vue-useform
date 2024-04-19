@@ -8,6 +8,10 @@ type Fields = {
     remember: boolean,
 };
 
+type FieldErrors = {
+    [key in keyof Fields]: string
+};
+
 const emptyFields: Fields = {
     name: '',
     email: '',
@@ -22,10 +26,17 @@ const  filledFields: Fields = {
     remember: true,
 };
 
+const errors: Partial<FieldErrors> = {
+    'name': 'error message for name field',
+    'email': 'error message for email field',
+    'password': 'error message for password field',
+    'remember': 'error message for remember field',
+};
+
 // isDirty tested using Vue Devtools
 
 describe('reset', () => {
-    it('can reset the whole fields', () => {
+    it('can reset the all fields', () => {
         const form = useForm(emptyFields);
     
         form.fields.name = 'mehdi saadi';
@@ -79,15 +90,35 @@ describe('setError', () => {
     });
 
     it('will set error message for one or multiple fields', () => {
-        const errors = {
-            'email': 'error message for email field',
-            'remember': 'error message for remember field'
-        };
-
         const form = useForm(emptyFields);
         form.setError(errors);
 
         expect(form.errors).toMatchObject(errors);
+    });
+});
+
+describe('clearErrors', () => {
+    it('clears all the error messages if no argument is provided', () => {
+        const form = useForm(emptyFields);
+
+        form.setError(errors);
+
+        form.clearErrors();
+
+        expect(form.errors).toMatchObject({});
+    });
+
+    it('only clears specified fields', () => {
+        const form = useForm(emptyFields);
+
+        form.setError(errors);
+
+        form.clearErrors('name', 'email');
+
+        expect(form.errors).toMatchObject({
+            'password': 'error message for password field',
+            'remember': 'error message for remember field',
+        });
     });
 });
 
