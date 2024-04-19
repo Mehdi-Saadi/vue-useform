@@ -1,25 +1,28 @@
 <script setup lang="ts">
 import useForm from '@/scripts/useForm';
 
-const form = useForm({
-    name: '',
-    email: '',
-    remember: false,
-});
+const form = useForm({});
+
+const send = () => {
+    form.get('https://jsonplaceholder.typicode.com/posts/1', {
+        onBefore() {
+            console.log('before');
+        },
+        onSuccess() {
+            console.log('success');
+        },
+        onError(error) {
+            console.log('error');
+        },
+        onFinish() {
+            console.log('finish');
+        },
+    });
+}
 </script>
 
 <template>
-    {{ form.fields.name }}
-    <br>
-    <input type="text" v-model="form.fields.name">
-    <br>
-    {{ form.fields.email }}
-    <br>
-    <input type="text" v-model="form.fields.email">
-    <br>
-    {{ form.fields.remember }}
-    <br>
-    <input type="checkbox" v-model="form.fields.remember">
-    <br>
-    <button @click.prevent="form.reset()">reset</button>
+    <button @click.prevent="send">send</button>
+    <span v-if="form.processing">processing</span>
+    <span v-if="form.wasSuccessful">was successful</span>
 </template>
