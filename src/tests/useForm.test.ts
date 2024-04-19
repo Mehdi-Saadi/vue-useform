@@ -22,6 +22,8 @@ const  filledFields: Fields = {
     remember: true,
 };
 
+// isDirty tested using Vue Devtools
+
 describe('reset', () => {
     it('can reset the whole fields', () => {
         const form = useForm(emptyFields);
@@ -64,8 +66,6 @@ describe('reset', () => {
         });
     });
 });
-
-describe('')
 
 // it('sets isDirty to true when initial value of fields is changed', () => {
 //     const firstForm = useForm(emptyFields);
