@@ -121,12 +121,3 @@ describe('clearErrors', () => {
         });
     });
 });
-
-// it('sets isDirty to true when initial value of fields is changed', () => {
-//     const firstForm = useForm(emptyFields);
-
-//     firstForm.fields.firstName = 'changed firstName';
-//     expect(firstForm.isDirty).toBe(true);
-
-
-// });
