@@ -106,11 +106,11 @@ export default function useForm<T extends FormFields>(data: T) {
                     await onError(errors);
                 }
             } finally {
-                this.processing = false;
-
                 if (onFinish) {
                     await onFinish();
                 }
+
+                this.processing = false;
             }
         },
         get(url, options) {
