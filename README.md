@@ -5,7 +5,7 @@ Provides a useForm helper similar to inertia's useForm to work with forms.
 ## Installation
 
 ```shell
-npm install
+npm install vue-useform
 ```
 
 ## Features
