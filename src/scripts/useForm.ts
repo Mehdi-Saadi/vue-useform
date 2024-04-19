@@ -34,7 +34,6 @@ interface FormProps<T> {
     delete(url: string, options?: Partial<VisitOptions>): void;
 }
 
-// todo: write test
 export default function useForm<T extends FormFields>(data: T) {
     let defaults = cloneDeep(data);
 
@@ -113,38 +112,6 @@ export default function useForm<T extends FormFields>(data: T) {
                     await onFinish();
                 }
             }
-
-            // if (method === 'delete') {
-            //     axios.delete(url, { data: this.fields })
-            // } else {
-            //     axios[method](url, this.fields)
-            //         .then((response) => {
-            //             this.wasSuccessful = true;
-            //             this.isDirty = false;
-            //             this.clearErrors();
-            //             defaults = cloneDeep(this.fields);
-
-            //             if (options.onSuccess) {
-            //                 options.onSuccess(response);
-            //             }
-            //         })
-            //         .catch((errors) => {
-            //             this.wasSuccessful = false;
-            //             this.clearErrors();
-            //             this.setError(errors);
-
-            //             if (options.onError) {
-            //                 options.onError(errors);
-            //             }
-            //         })
-            //         .finally(() => {
-            //             this.processing = false;
-
-            //             if (options.onFinish) {
-            //                 options.onFinish();
-            //             }
-            //         });
-            // }
         },
         get(url, options) {
             this.submit('get', url, options);
