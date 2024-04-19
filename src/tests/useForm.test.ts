@@ -1,4 +1,4 @@
-import useForm from '@/scripts/useForm';
+import useForm from '@/useForm';
 import { describe, it, expect } from 'vitest';
 
 type Fields = {
