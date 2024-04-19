@@ -67,6 +67,30 @@ describe('reset', () => {
     });
 });
 
+describe('setError', () => {
+    it('will set error message for one specific field', () => {
+        const form = useForm(emptyFields);
+
+        form.setError('email', 'error message for email field');
+
+        expect(form.errors).toMatchObject({
+            'email': 'error message for email field'
+        });
+    });
+
+    it('will set error message for one or multiple fields', () => {
+        const errors = {
+            'email': 'error message for email field',
+            'remember': 'error message for remember field'
+        };
+
+        const form = useForm(emptyFields);
+        form.setError(errors);
+
+        expect(form.errors).toMatchObject(errors);
+    });
+});
+
 // it('sets isDirty to true when initial value of fields is changed', () => {
 //     const firstForm = useForm(emptyFields);
 
