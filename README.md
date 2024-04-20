@@ -2,11 +2,11 @@
 
 Provides a useForm helper similar to inertia's useForm to work with forms.
 
-## Installation
+<!-- ## Installation
 
 ```shell
 npm install vue-useform
-```
+``` -->
 
 ## Features
 
@@ -40,8 +40,6 @@ npm install vue-useform
 ### in your script setup tag:
 
 ```js
-import useForm from 'vue-useform';
-
 const form = useForm({
     name: '',
     email: '',
